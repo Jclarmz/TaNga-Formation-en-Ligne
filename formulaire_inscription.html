@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulaire d'inscription</title>
+</head>
+<body>
+    <form action="traitement_formulaire.php" method="post">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required><br>
+
+    <label for="email">Adresse e-mail :</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="formation">Formation :</label>
+    <select id="formation" name="formation" required>
+        <option value="">Sélectionnez une formation</option>
+        <option value="Windows">Windows</option>
+        <option value="Word">Word</option>
+        <option value="Excel">Excel</option>
+        <option value="Access">Access</option>
+        <option value="Internet">Internet</option>
+        <option value="Community Management">Community Management</option>
+        <option value="GIMP">GIMP</option>
+        <option value="Photoshop">Photoshop</option>
+        <option value="Administration des réseaux">Administration des réseaux</option>
+        <option value="HTML-CSS">HTML-CSS</option>
+        <option value="PHP">PHP</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="Python">Python</option>
+    </select><br>
+
+    <input type="submit" value="Envoyer">
+</form>
+</body>
+</html>

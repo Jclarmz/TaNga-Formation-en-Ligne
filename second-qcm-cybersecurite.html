@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TaNga | QCM interactif</title>
+  <link rel="stylesheet" type="text/css" href="style2.css">
+  <link rel="shortcut icon" href="images/tangaT.png" type="image/png">
+  <style>
+    /* Styles pour les résultats */
+    .nul { color: red; }
+    .moyen { color: darkred; }
+    .bien { color: green; }
+    .excellent { color: darkgreen; }
+  </style>
+</head>
+<body>
+  <h1>TaNga | QCM interactif</h1>
+  <form id="quizForm">
+    <label for="name">Votre nom :</label>
+    <input type="text" id="name" required placeholder="ex : Declau MBOUMBA"><br><br>
+
+    <p>1. Quelle est la principale caractéristique d'une attaque par phishing ?</p>
+    <input type="radio" name="q1" value="0"> a) Infecter un réseau avec un virus<br>
+    <input type="radio" name="q1" value="2"> b) Voler des informations via des emails frauduleux<br>
+    <input type="radio" name="q1" value="0"> c) Bloquer un système avec des requêtes multiples<br><br>
+
+    <p>2. Qu'est-ce qu'une attaque de type "Man-in-the-Middle" ?</p>
+    <input type="radio" name="q2" value="2"> a) Un pirate interceptant et modifiant la communication entre deux parties<br>
+    <input type="radio" name="q2" value="0"> b) Une saturation d’un serveur par des requêtes massives<br>
+    <input type="radio" name="q2" value="0"> c) Un logiciel malveillant qui chiffre les données pour exiger une rançon<br><br>
+
+    <p>3. Qu'est-ce qu'une attaque par ransomware ?</p>
+    <input type="radio" name="q3" value="0"> a) Une tentative de voler des informations d'identification<br>
+    <input type="radio" name="q3" value="2"> b) L'utilisation d'un logiciel malveillant pour chiffrer des données en échange d'une rançon<br>
+    <input type="radio" name="q3" value="0"> c) Une attaque visant à détruire les serveurs de l'entreprise<br><br>
+
+    <p>4. Quelle est l'intention principale d'une attaque de déni de service (DoS) ?</p>
+    <input type="radio" name="q4" value="0"> a) Récupérer des données sensibles<br>
+    <input type="radio" name="q4" value="0"> b) Voler des informations d'identification<br>
+    <input type="radio" name="q4" value="2"> c) Rendre un service inaccessible en le saturant de requêtes<br><br>
+
+    <p>5. Quel est le principe d’une attaque par injection SQL ?</p>
+    <input type="radio" name="q5" value="0"> a) Injecter des données dans un système pour en altérer le fonctionnement<br>
+    <input type="radio" name="q5" value="2"> b) Exploiter une vulnérabilité d'une base de données via des requêtes SQL malveillantes<br>
+    <input type="radio" name="q5" value="0"> c) Supprimer les fichiers d’un serveur<br><br>
+
+    <p>6. Qu’est-ce qu’un "zero-day" dans une cyberattaque ?</p>
+    <input type="radio" name="q6" value="2"> a) Une attaque visant des failles récemment découvertes et non corrigées<br>
+    <input type="radio" name="q6" value="0"> b) Un accès non autorisé à des fichiers anciens<br>
+    <input type="radio" name="q6" value="0"> c) Une attaque menée dans un délai de 24 heures<br><br>
+
+    <p>7. Qu'est-ce qu'une attaque par force brute ?</p>
+    <input type="radio" name="q7" value="2"> a) Deviner un mot de passe en essayant toutes les combinaisons possibles<br>
+    <input type="radio" name="q7" value="0"> b) Inonder un serveur de requêtes pour le rendre inaccessible<br>
+    <input type="radio" name="q7" value="0"> c) Utiliser un virus pour infecter un système<br><br>
+
+    <p>8. Quelle est la cible principale d'une attaque DDoS ?</p>
+    <input type="radio" name="q8" value="0"> a) Les données des utilisateurs<br>
+    <input type="radio" name="q8" value="0"> b) La bande passante d'un réseau<br>
+    <input type="radio" name="q8" value="2"> c) La disponibilité d'un service en ligne<br><br>
+
+    <p>9. Quel est l’objectif d’une attaque par « Cross-Site Scripting » (XSS) ?</p>
+    <input type="radio" name="q9" value="0"> a) Inonder un site de requêtes<br>
+    <input type="radio" name="q9" value="2"> b) Voler des cookies ou injecter des scripts malveillants sur des pages web<br>
+    <input type="radio" name="q9" value="0"> c) Bloquer l’accès à un site web<br><br>
+
+    <p>10. Qu’est-ce qu’une attaque de type "Social Engineering" ?</p>
+    <input type="radio" name="q10" value="0"> a) Utiliser des failles logicielles pour voler des informations<br>
+    <input type="radio" name="q10" value="2"> b) Manipuler les individus pour leur soutirer des informations confidentielles<br>
+    <input type="radio" name="q10" value="0"> c) Chiffrer des données pour exiger une rançon<br><br>
+
+    <input type="submit" value="Soumettre">
+  </form>
+
+  <div id="results" style="display: none;">
+    <h2>Résultats</h2>
+    <p id="nameResult"></p>
+    <p id="scoreResult"></p>
+    <p id="feedback"></p>
+  </div>
+
+  <form action="cours-cybersecurite.html" method="post">
+    <input type="submit" value="Retour">
+  </form>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      let score = 0;
+      const name = document.getElementById('name').value;
+
+      // Calcul du score
+      const questions = document.querySelectorAll('input[type="radio"]:checked');
+      questions.forEach(function(question) {
+        score += parseInt(question.value);
+      });
+
+      // Afficher les résultats
+      const nameResult = document.getElementById('nameResult');
+      const scoreResult = document.getElementById('scoreResult');
+      const feedback = document.getElementById('feedback');
+
+      nameResult.textContent = "Nom : " + name;
+      scoreResult.textContent = "Score : " + score + "/20";
+
+      // Redirections basées sur le score
+      if (score <= 9) {
+        feedback.textContent = "Mention : Nul";
+        feedback.className = "nul";
+        window.location.href = "second-qcm-cybersecurite.html";  // Redirection vers la seconde tentative
+      } else if (score <= 13) {
+        feedback.textContent = "Mention : Moyen";
+        feedback.className = "moyen";
+        window.location.href = "cours-cybersecurite.html";  // Redirection vers le module suivant
+      } else if (score <= 17) {
+        feedback.textContent = "Mention : Bien";
+        feedback.className = "bien";
+        window.location.href = "cours-cybersecurite.html";  // Redirection vers le module suivant
+      } else {
+        feedback.textContent = "Mention : Excellent";
+        feedback.className = "excellent";
+        window.location.href = "cours-cybersecurite.html";  // Redirection vers le module suivant
+      }
+
+      document.getElementById('results').style.display = "block";
+    });
+  </script>
+</body>
+</html>

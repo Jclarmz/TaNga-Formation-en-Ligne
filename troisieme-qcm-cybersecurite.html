@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TaNga | QCM interactif</title>
+  <link rel="stylesheet" type="text/css" href="style2.css">
+  <link rel="shortcut icon" href="images/tangaT.png" type="image/png">
+  <style>
+    /* Styles pour les résultats */
+    .nul { color: red; }
+    .moyen { color: darkred; }
+    .bien { color: green; }
+    .excellent { color: darkgreen; }
+  </style>
+</head>
+<body>
+  <h1>TaNga | QCM interactif</h1>
+  <form id="quizForm">
+    <label for="name">Votre nom :</label>
+    <input type="text" id="name" required placeholder="ex : Declau MBOUMBA"><br><br>
+
+    <p>1. Qu'est-ce qu'une attaque par "Zero-day" ?</p>
+    <input type="radio" name="q1" value="0"> a) Une attaque menée pendant une journée spécifique.<br>
+    <input type="radio" name="q1" value="2"> b) Une attaque exploitant une vulnérabilité inconnue des fournisseurs.<br>
+    <input type="radio" name="q1" value="0">  c) Un virus qui agit immédiatement après installation.<br><br>
+
+    <p>2. Quel est l'objectif principal d'une APT (Attaque Persistante Avancée) ?</p>
+    <input type="radio" name="q2" value="0"> a) Récupérer des informations rapidement.<br>
+    <input type="radio" name="q2" value="2"> b) Maintenir un accès continu à un réseau cible pour voler des informations à long terme.<br>
+    <input type="radio" name="q2" value="0"> c) Détruire l'infrastructure d'un réseau.<br><br>
+
+    <p>3. Quelle est la principale cible d'une attaque d'ingénierie sociale ?</p>
+    <input type="radio" name="q3" value="0"> a) Le matériel informatique.<br>
+    <input type="radio" name="q3" value="2"> b) Les individus et leur psychologie.<br>
+    <input type="radio" name="q3" value="0"> c) Le réseau interne de l'entreprise.<br><br>
+
+    <p>4. Que doit faire un utilisateur pour se protéger contre une attaque par phishing ?</p>
+    <input type="radio" name="q4" value="0"> a) Télécharger un antivirus puissant.<br>
+    <input type="radio" name="q4" value="2"> b) Ne jamais cliquer sur des liens dans des emails suspects.<br>
+    <input type="radio" name="q4" value="0"> c) Éviter de répondre aux appels d’inconnus.<br><br>
+
+    <p>5. Quelle est la première étape dans une attaque APT ?</p>
+    <input type="radio" name="q5" value="2"> a) Accès initial au réseau.<br>
+    <input type="radio" name="q5" value="0"> b) Élimination des traces de l'attaque.<br>
+    <input type="radio" name="q5" value="0"> c) Extorsion des données volées.<br><br>
+
+    <p>6. Quel est le rôle d’un système IDS ?</p>
+    <input type="radio" name="q6" value="0"> a) Détruire les virus présents dans un réseau.<br>
+    <input type="radio" name="q6" value="2">  b) Détecter les intrusions ou activités suspectes sur un réseau.<br>
+    <input type="radio" name="q6" value="0"> c) Bloquer l'accès au réseau de l'extérieur.<br><br>
+
+    <p>7. Que signifie "patcher" un système ?</p>
+    <input type="radio" name="q7" value="0"> a) Installer un nouveau logiciel.<br>
+    <input type="radio" name="q7" value="2"> b) Appliquer un correctif à une vulnérabilité connue.<br>
+    <input type="radio" name="q7" value="0"> c) Remplacer un matériel défectueux.<br><br>
+
+    <p>8. Quel type d'attaque le ransomware WannaCry utilisait-il ?</p>
+    <input type="radio" name="q8" value="0">  a) Ingénierie sociale. <br>
+    <input type="radio" name="q8" value="2"> b) Exploitation de vulnérabilité zero-day.<br>
+    <input type="radio" name="q8" value="0"> c) Saturation de bande passante.<br><br>
+
+    <p>9. Quel est l'élément commun entre les attaques APT et les zero-day ?</p>
+    <input type="radio" name="q9" value="0"> a) Elles sont généralement menées par des individus novices.<br>
+    <input type="radio" name="q9" value="0"> b) Elles impliquent une longue période d'infiltration.<br>
+    <input type="radio" name="q9" value="2"> c) Elles utilisent des vulnérabilités non découvertes pour infiltrer un réseau.<br><br>
+
+    <p>10. Pourquoi la formation des utilisateurs est-elle essentielle contre les attaques par phishing ?</p>
+    <input type="radio" name="q10" value="0"> a) Parce qu'elle permet de corriger les failles techniques.<br>
+    <input type="radio" name="q10" value="2"> b) Parce que les utilisateurs sont souvent la première ligne de défense.<br>
+    <input type="radio" name="q10" value="0"> c) Parce que la formation augmente la vitesse de réaction des serveurs.<br><br>
+
+    <input type="submit" value="Soumettre">
+  </form>
+
+  <div id="results" style="display: none;">
+    <h2>Résultats</h2>
+    <p id="nameResult"></p>
+    <p id="scoreResult"></p>
+    <p id="feedback"></p>
+  </div>
+
+  <form action="cours-cybersecurite.html" method="post">
+    <input type="submit" value="Retour">
+  </form>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      let score = 0;
+      const name = document.getElementById('name').value;
+
+      // Calcul du score
+      const questions = document.querySelectorAll('input[type="radio"]:checked');
+      questions.forEach(function(question) {
+        score += parseInt(question.value);
+      });
+
+      // Afficher les résultats
+      const nameResult = document.getElementById('nameResult');
+      const scoreResult = document.getElementById('scoreResult');
+      const feedback = document.getElementById('feedback');
+
+      nameResult.textContent = "Nom : " + name;
+      scoreResult.textContent = "Score : " + score + "/20";
+
+      if (score <= 9) {
+        feedback.textContent = "Mention : Nul";
+        feedback.className = "nul";
+        window.location.href = "troisieme-qcm-cybersecurite.html";  // Redirection pour un score entre 0 et 9
+      } else if (score <= 13) {
+        feedback.textContent = "Mention : Moyen";
+        feedback.className = "moyen";
+        window.location.href = "cours-cybersecurite.html";  // Redirection pour un score entre 10 et 13
+      } else if (score <= 17) {
+        feedback.textContent = "Mention : Bien";
+        feedback.className = "bien";
+        window.location.href = "cours-cybersecurite.html";  // Redirection pour un score entre 14 et 17
+      } else {
+        feedback.textContent = "Mention : Excellent";
+        feedback.className = "excellent";
+        window.location.href = "cours-cybersecurite.html";  // Redirection pour un score entre 18 et 20
+      }
+
+      document.getElementById('results').style.display = "block";
+    });
+  </script>
+</body>
+</html>

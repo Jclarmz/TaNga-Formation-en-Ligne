@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--====== Required meta tags ======-->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>TaNga | QCM interactif</title>
+  <link rel="stylesheet" type="text/css" href="style2.css">
+
+  <!--====== Favicon Icon ======-->
+  <link rel="shortcut icon" href="images/tangaT.png" type="image/png">
+</head>
+<body>
+  <h1>TaNga | QCM interactif</h1>
+  <form id="quizForm">
+    <label for="name">Votre nom :</label>
+    <input type="text" id="name" required placeholder="ex : Declau MBOUMBA"><br /><br />
+
+    <p>1. La cybersécurité concerne la protection de :</p>
+    <input type="radio" name="q1" value="0"> a) Uniquement les ordinateurs<br />
+    <input type="radio" name="q1" value="0"> b) Les utilisateurs<br>
+    <input type="radio" name="q1" value="2"> c) Les systèmes, réseaux, et données<br /><br />
+
+    <p>2. Qu’est-ce qu’une attaque DDoS ?</p>
+    <input type="radio" name="q2" value="0"> a) Un accès non autorisé à des données personnelles<br>
+    <input type="radio" name="q2" value="0"> b) Une saturation d’un système par un volume massif de requêtes<br>
+    <input type="radio" name="q2" value="2"> c) Une attaque ciblant les applications web<br><br>
+
+    <p>3. Le phishing est :</p>
+    <input type="radio" name="q3" value="0"> a) Une attaque utilisant des failles logicielles<br>
+    <input type="radio" name="q3" value="2"> b) Une technique d’hameçonnage pour obtenir des informations personnelles<br>
+    <input type="radio" name="q3" value="0"> c) Un virus informatique<br><br>
+
+    <p>4. Le ransomware est un logiciel qui :</p>
+    <input type="radio" name="q4" value="2"> a) Chiffre les données de l'utilisateur et demande une rançon<br>
+    <input type="radio" name="q4" value="0"> b) Surveille l'activité des utilisateurs<br>
+    <input type="radio" name="q4" value="0"> c) Protège les systèmes contre les intrusions<br><br>
+
+    <p>5. Le man-in-the-middle est une attaque où :</p>
+    <input type="radio" name="q5" value="2"> a) Un attaquant intercepte les communications entre deux parties<br>
+    <input type="radio" name="q5" value="0"> b) Un attaquant utilise des logiciels malveillants pour voler des données<br>
+    <input type="radio" name="q5" value="0"> c) Un utilisateur malveillant accède à un serveur distant<br><br>
+
+    <p>6. Qu’est-ce qu’une faille logicielle (vulnérabilité) ?</p>
+    <input type="radio" name="q5" value="0"> a) Une configuration incorrecte des fichiers<br>
+    <input type="radio" name="q5" value="2"> b) Une faiblesse dans un programme pouvant être exploitée<br>
+    <input type="radio" name="q5" value="0"> c) Un logiciel malveillant installé par un attaquant<br><br>
+
+    <p>7. Quelle est la fonction principale d’un pare-feu ?</p>
+    <input type="radio" name="q5" value="0"> a) Bloquer les virus<br>
+    <input type="radio" name="q5" value="2"> b) Surveiller et filtrer le trafic réseau entrant et sortant<br>
+    <input type="radio" name="q5" value="0"> c) Analyser les fichiers pour détecter les ransomwares<br><br>
+
+    <p>8. Quel type de cyberattaque utilise l’ingénierie sociale ?</p>
+    <input type="radio" name="q5" value="2"> a) Le phishing<br>
+    <input type="radio" name="q5" value="0"> b) Le spyware<br>
+    <input type="radio" name="q5" value="0"> c) L’exploit de failles logicielles<br><br>
+
+    <p>9. Quel est l'objectif principal d'une attaque par force brute ?</p>
+    <input type="radio" name="q5" value="0"> a) Intercepter les communications<br>
+    <input type="radio" name="q5" value="2"> b) Deviner les mots de passe en essayant plusieurs combinaisons<br>
+    <input type="radio" name="q5" value="0"> c) Infecter un système avec un virus<br><br>
+
+    <p>10. Les vulnérabilités Zero-Day sont des failles qui :</p>
+    <input type="radio" name="q5" value="0"> a) Sont déjà corrigées par le fournisseur<br>
+    <input type="radio" name="q5" value="2"> b) Sont découvertes et exploitées avant d’être connues du public<br>
+    <input type="radio" name="q5" value="0"> c) Provoquent la saturation d’un système avec des requêtes<br><br>
+
+    <input type="submit" value="Soumettre">
+  </form>
+
+  <div id="results" style="display: none;">
+    <h2>Résultats</h2>
+    <p id="nameResult"></p>
+    <p id="scoreResult"></p>
+    <p id="feedback"></p>
+  </div>
+
+  <form action="cours-cybersecurite.html" method="post">
+    <input type="submit" value="Retour">
+  </form>
+
+  <script>
+    document.getElementById('quizForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Récupérer le nom de l'utilisateur
+      var userName = document.getElementById('name').value;
+
+      // Initialiser le score
+      var score = 0;
+
+      // Récupérer les réponses du QCM
+      var q1 = document.querySelector('input[name="q1"]:checked');
+      var q2 = document.querySelector('input[name="q2"]:checked');
+      var q3 = document.querySelector('input[name="q3"]:checked');
+      var q4 = document.querySelector('input[name="q4"]:checked');
+      var q5 = document.querySelector('input[name="q5"]:checked');
+      var q6 = document.querySelector('input[name="q6"]:checked');
+      var q7 = document.querySelector('input[name="q7"]:checked');
+      var q8 = document.querySelector('input[name="q8"]:checked');
+      var q9 = document.querySelector('input[name="q9"]:checked');
+      var q10 = document.querySelector('input[name="q10"]:checked');
+
+      // Calculer le score total (chaque bonne réponse vaut 2 points)
+      if (q1 && q1.value === "2") score += 2;
+      if (q2 && q2.value === "2") score += 2;
+      if (q3 && q3.value === "2") score += 2;
+      if (q4 && q4.value === "2") score += 2;
+      if (q5 && q5.value === "2") score += 2;
+      if (q6 && q6.value === "2") score += 2;
+      if (q7 && q7.value === "2") score += 2;
+      if (q8 && q8.value === "2") score += 2;
+      if (q9 && q9.value === "2") score += 2;
+      if (q10 && q10.value === "2") score += 2;
+
+      // Afficher le nom et le score
+      document.getElementById('nameResult').innerText = "Nom : " + userName;
+      document.getElementById('scoreResult').innerText = "Votre score : " + score + "/20";
+
+      // Déterminer la mention en fonction du score
+      var feedback = document.getElementById('feedback');
+      if (score <= 9) {
+        feedback.innerText = "Nul";
+        feedback.style.color = "red";
+        // Rediriger vers la page pour refaire le QCM après 6 secondes
+        setTimeout(function() {
+          window.location.href = 'first_qcm_cybersecurite.html';
+        }, 6000);
+      } else if (score >= 10 && score <= 13) {
+        feedback.innerText = "Moyen";
+        feedback.style.color = "darkred";
+        // Rediriger vers le module 2 après 3 secondes
+        setTimeout(function() {
+          window.location.href = 'cours-cybersecurite.html#module2';
+        }, 3000);
+      } else if (score >= 14 && score <= 17) {
+        feedback.innerText = "Bien";
+        feedback.style.color = "green";
+        // Rediriger vers le module 2 après 3 secondes
+        setTimeout(function() {
+          window.location.href = 'cours-cybersecurite.html#module2';
+        }, 3000);
+      } else if (score >= 18 && score <= 20) {
+        feedback.innerText = "Excellent";
+        feedback.style.color = "darkgreen";
+        // Rediriger vers le module 2 après 3 secondes
+        setTimeout(function() {
+          window.location.href = 'cours-cybersecurite.html#module2';
+        }, 3000);
+      }
+
+      // Afficher les résultats
+      document.getElementById('results').style.display = "block";
+    });
+  </script>
+
+
+</body>
+</html>
